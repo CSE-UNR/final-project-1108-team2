@@ -1,5 +1,6 @@
-//Sophia Koshy
+//Authors: Zion Gomez, Jacob Becerra, Sophia Koshy
 //Final Group Project
+//Date: 12/10/2024
 
 #include <stdio.h>
 #define FILENAME "madlib2.txt"
