@@ -5,12 +5,13 @@
 #include <stdio.h>
 #define FILENAME "madlib2.txt"
 #define SIZE 200  
-#define SIZE2 500
+#define SIZE2 900
 
 void readFile(FILE* fin, char fileString[]);
 void enteredWord(char wordType[], char userWord[]);
 void appendUserString(int* index, char userWord[], char fileString[]);
 void appendFileString(int* index, char temp[], char fileString[]);
+void addSpace(int* index, char temp[], char fileString[]);
 
 int main(){
 
@@ -39,9 +40,11 @@ void readFile(FILE* fin, char fileString[]){
         switch(temp[1]){
             case '\n':
                 enteredWord(temp, userWord);
+                addSpace(&index, temp, fileString);
                 appendUserString(&index, userWord, fileString);
                 break;
             default:
+                addSpace(&index, temp, fileString);
                 appendFileString(&index, temp, fileString);
                 break;
         }
@@ -66,9 +69,6 @@ void enteredWord(char wordType[], char userWord[]){
 }
 
 void appendUserString(int* index, char userWord[], char fileString[]){
-    fileString[*index] = ' ';
-    *index += 1;
-
     for(int i = 0; userWord[i] != '\0'; i++){
         fileString[*index] = userWord[i];
         *index += 1;
@@ -76,13 +76,15 @@ void appendUserString(int* index, char userWord[], char fileString[]){
 }
 
 void appendFileString(int* index, char temp[], char fileString[]){
-    if(*index != 0 && temp[0] != '.'){
-        fileString[*index] = ' ';
-        *index += 1;
-    }
-
     for(int i = 0; temp[i] != '\n'; i++){
         fileString[*index] = temp[i];
+        *index += 1;
+    }
+}
+
+void addSpace(int* index, char temp[], char fileString[]){
+    if(*index != 0 && temp[0] != '.'){
+        fileString[*index] = ' ';
         *index += 1;
     }
 }
