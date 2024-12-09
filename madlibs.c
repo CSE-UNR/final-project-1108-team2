@@ -43,14 +43,15 @@ void readFile(FILE* fin, char fileString[]){
                     enteredWord(temp, userWord);
                     addSpace(&index, temp, fileString);
                     appendUserString(&index, userWord, fileString);
+                    break;
                 }
-                break;
             default:
                 addSpace(&index, temp, fileString);
                 appendFileString(&index, temp, fileString);
                 break;
         }
     }
+
     fileString[index] = '\0';
 }
 
@@ -78,10 +79,6 @@ void appendUserString(int* index, char userWord[], char fileString[]){
 }
 
 void appendFileString(int* index, char temp[], char fileString[]){
-    if(temp[0] == '!' && temp[1] == '\n'){
-        printf("This is just a exclamation mark");
-    }
-
     for(int i = 0; temp[i] != '\n'; i++){
         fileString[*index] = temp[i];
         *index += 1;
