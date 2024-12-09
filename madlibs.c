@@ -3,7 +3,7 @@
 //Date: 12/10/2024
 
 #include <stdio.h>
-#define FILENAME "madlib2.txt"
+#define FILENAME "madlib1.txt"
 #define SIZE 200  
 #define SIZE2 900
 
@@ -39,9 +39,11 @@ void readFile(FILE* fin, char fileString[]){
     while(fgets(temp, SIZE, fin) != NULL){
         switch(temp[1]){
             case '\n':
-                enteredWord(temp, userWord);
-                addSpace(&index, temp, fileString);
-                appendUserString(&index, userWord, fileString);
+                if(temp[0] == 'A' || temp[0] == 'V' || temp[0] == 'N'){
+                    enteredWord(temp, userWord);
+                    addSpace(&index, temp, fileString);
+                    appendUserString(&index, userWord, fileString);
+                }
                 break;
             default:
                 addSpace(&index, temp, fileString);
@@ -76,6 +78,10 @@ void appendUserString(int* index, char userWord[], char fileString[]){
 }
 
 void appendFileString(int* index, char temp[], char fileString[]){
+    if(temp[0] == '!' && temp[1] == '\n'){
+        printf("This is just a exclamation mark");
+    }
+
     for(int i = 0; temp[i] != '\n'; i++){
         fileString[*index] = temp[i];
         *index += 1;
@@ -83,7 +89,7 @@ void appendFileString(int* index, char temp[], char fileString[]){
 }
 
 void addSpace(int* index, char temp[], char fileString[]){
-    if(*index != 0 && temp[0] != '.'){
+    if(*index != 0 && temp[0] != '.' && temp[0] != '!' && temp[0] != ',' && temp[0] != ' '){
         fileString[*index] = ' ';
         *index += 1;
     }
