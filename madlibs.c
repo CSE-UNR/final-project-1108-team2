@@ -5,7 +5,6 @@
 #include <stdio.h>
 #define FILENAME "madlib1.txt"
 #define SIZE 200  
-#define SIZE2 900
 
 void readFile(FILE* fin, char fileString[][SIZE]);
 void enteredWord(char arrayNAV[], char fileString[][SIZE]);
@@ -21,14 +20,14 @@ int main(){
 	fin = fopen(FILENAME,"r");
     
 	if (fin == NULL){
-        printf("Could not open file.\n");
-        return 0;
-    }
+        	printf("Could not open file.\n");
+        	return 0;
+   	}
 
-    readFile(fin, fileString);
-    printf("%s\n", fileString);
-
-    return 0;
+    	readFile(fin, fileString);
+    	printf("%s\n", fileString);
+    	fclose(fin);
+    	return 0;
 }
 
 void readFile(FILE* fin, char fileString[]){
