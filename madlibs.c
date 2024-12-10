@@ -7,16 +7,16 @@
 #define SIZE 200  
 #define SIZE2 900
 
-void readFile(FILE* fin, char fileString[]);
-void enteredWord(char wordType[], char userWord[]);
-void appendUserString(int* index, char userWord[], char fileString[]);
-void appendFileString(int* index, char temp[], char fileString[]);
-void addSpace(int* index, char temp[], char fileString[]);
+void readFile(FILE* fin, char fileString[][SIZE]);
+void enteredWord(char arrayNAV[], char fileString[][SIZE]);
+void replaceWithUserString(char userWord[], char fileString[][SIZE]);
+void newArray(char arrayNAV[], char fileString[][SIZE]);
+void displayMadlib(char fileString[][SIZE]);
 
 int main(){
 
 	FILE* fin;
-    char fileString[SIZE2];
+ 	char fileString[][SIZE2];
 
 	fin = fopen(FILENAME,"r");
     
