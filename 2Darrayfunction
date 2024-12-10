@@ -1,0 +1,21 @@
+//Jacob Becerra
+void replaceWithUserString(char arrayNAV[], char fileString[][SIZE]) {
+    char userWord[SIZE];
+
+    for (int i = 0; fileString[i][0] != '\0'; i++) {
+        for (int j = 0; arrayNAV[j] != '\0'; j++) {
+            if (fileString[i][0] == arrayNAV[j] && fileString[i][1] == '\0') {
+                enteredWord(arrayNAV[j], userWord);
+
+                // Replace the placeholder with the user input
+                int k = 0;
+                while (userWord[k] != '\0' && k < SIZE - 1) {
+                    fileString[i][k] = userWord[k];
+                    k++;
+                }
+                fileString[i][k] = '\0'; 
+                break;
+            }
+        }
+    }
+}
