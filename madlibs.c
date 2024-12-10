@@ -25,7 +25,7 @@ int main(){
    	}
 
     	readFile(fin, fileString);
-    	printf("%s\n", fileString);
+	displayMadlib(filestring);
     	fclose(fin);
     	return 0;
 }
@@ -84,9 +84,6 @@ void appendFileString(int* index, char temp[], char fileString[]){
     }
 }
 
-void addSpace(int* index, char temp[], char fileString[]){
-    if(*index != 0 && temp[0] != '.' && temp[0] != '!' && temp[0] != ',' && temp[0] != ' '){
-        fileString[*index] = ' ';
-        *index += 1;
-    }
+void displayMadlib(char fileString[][SIZE]){
+	printf("%s\n", fileString);
 }
