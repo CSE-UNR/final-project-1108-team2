@@ -7,55 +7,44 @@
 #define SIZE 200  
 
 void readFile(FILE* fin, char fileString[][SIZE]);
-void enteredWord(char arrayNAV[], char fileString[][SIZE]);
-void replaceWithUserString(char userWord[], char fileString[][SIZE]);
-void newArray(char arrayNAV[], char fileString[][SIZE]);
+void enteredWord(char wordType, char userWord[]);
+void replaceWithUserString(char arrayNAV[], char fileString[][SIZE]);
+void storeNAV(char arrayNAV[], char fileString[][SIZE]);
 void displayMadlib(char fileString[][SIZE]);
 
 int main(){
 
-	FILE* fin;
- 	char fileString[][SIZE2];
+    FILE* fin;
+    char fileString[SIZE][SIZE];
 
-	fin = fopen(FILENAME,"r");
-    
-	if (fin == NULL){
-        	printf("Could not open file.\n");
-        	return 0;
-   	}
+    fin = fopen(FILENAME,"r");
 
-    	readFile(fin, fileString);
-	displayMadlib(filestring);
-    	fclose(fin);
-    	return 0;
-}
-
-void readFile(FILE* fin, char fileString[]){
-    int index = 0;
-    char temp[SIZE];
-    char userWord[SIZE];
-
-    while(fgets(temp, SIZE, fin) != NULL){
-        switch(temp[1]){
-            case '\n':
-                if(temp[0] == 'A' || temp[0] == 'V' || temp[0] == 'N'){
-                    enteredWord(temp, userWord);
-                    addSpace(&index, temp, fileString);
-                    appendUserString(&index, userWord, fileString);
-                    break;
-                }
-            default:
-                addSpace(&index, temp, fileString);
-                appendFileString(&index, temp, fileString);
-                break;
-        }
+    if (fin == NULL){
+        printf("Could not open file.\n");
+        return 0;
     }
 
-    fileString[index] = '\0';
+    readFile(fin, fileString);
+    displayMadlib(fileString);
+    fclose(fin);
+    return 0;
 }
 
-void enteredWord(char wordType[], char userWord[]){
-    switch(wordType[0]){
+void readFile(FILE* fin, char fileString[][SIZE]){
+    int index = 0;
+    char temp[SIZE];
+
+    while(fgets(temp, SIZE, fin) != NULL){
+        for(int i = 0; temp[i] != '\n'; i++){
+            fileString[index][i] = temp[i];
+        }
+        index++;
+    }
+
+}
+
+void enteredWord(char wordType, char userWord[]){
+    switch(wordType){
         case 'A':
             printf("Enter an adjective: ");
             break;
@@ -70,20 +59,15 @@ void enteredWord(char wordType[], char userWord[]){
     scanf("%s", userWord);
 }
 
-void appendUserString(int* index, char userWord[], char fileString[]){
-    for(int i = 0; userWord[i] != '\0'; i++){
-        fileString[*index] = userWord[i];
-        *index += 1;
+void replaceWithUserString(char arrayNAV[], char fileString[][SIZE]){
+    for(int i = 0; arrayNAV[i] != '\0'; i++){
+
     }
 }
 
-void appendFileString(int* index, char temp[], char fileString[]){
-    for(int i = 0; temp[i] != '\n'; i++){
-        fileString[*index] = temp[i];
-        *index += 1;
-    }
-}
 
 void displayMadlib(char fileString[][SIZE]){
-	printf("%s\n", fileString);
+    for(int i = 0; fileString[i][0] != '\0'; i++){
+        printf("%s ", fileString[i]);
+    }
 }
