@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#define FILENAME "madlib1.txt"
+#define FILENAME "madlib2.txt"
 #define SIZE 200  
 
 void readFile(FILE* fin, char fileString[][SIZE]);
@@ -31,6 +31,7 @@ int main(){
     }
 
     readFile(fin, fileString);
+    //storeNAV(arrayNAV, fileString);
     replaceWithUserString(arrayNAV, fileString);
     displayMadlib(fileString);
     fclose(fin);
@@ -77,7 +78,7 @@ void replaceWithUserString(char arrayNAV[], char fileString[][SIZE]){
         bool foundNAV = 0;
 
         for(int j = 0; foundNAV != 1; j++){
-            if(fileString[j][0] == arrayNAV[i]){
+            if(fileString[j][0] == arrayNAV[i] && fileString[j][1] == '\0'){
                 foundNAV = 1;
 
                 for(int c = 0; userWord[c] != '\0'; c++){
